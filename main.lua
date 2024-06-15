@@ -321,7 +321,7 @@ function act_crystal_lance_dash(m)
         return set_mario_action(m, ACT_WALKING, 0)
     end
 
-    if stepResult == GROUND_STEP_HIT_WALL and m.wall ~= nil then
+    if stepResult == GROUND_STEP_HIT_WALL and m.wall ~= nil and m.wall.object == nil then
         m.particleFlags = m.particleFlags | PARTICLE_VERTICAL_STAR
         audio_sample_play(MILNE_SOUND_ACTION_LANCE_WALL, m.pos, 1)
         set_mario_action(m, ACT_CRYSTAL_LANCE_WALL, 0)
@@ -373,7 +373,7 @@ function act_crystal_lance_dash_air(m)
         return set_mario_action(m, ACT_FREEFALL, 0)
     end
 
-    if stepResult == AIR_STEP_HIT_WALL and m.wall ~= nil then
+    if stepResult == GROUND_STEP_HIT_WALL and m.wall ~= nil and m.wall.object == nil then
         m.particleFlags = m.particleFlags | PARTICLE_VERTICAL_STAR
         audio_sample_play(MILNE_SOUND_ACTION_LANCE_WALL, m.pos, 1)
         set_mario_action(m, ACT_CRYSTAL_LANCE_WALL, 0)
